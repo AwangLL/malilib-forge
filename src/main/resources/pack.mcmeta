@@ -1,6 +1,6 @@
 {
 	"pack": {
-		"pack_format": 9,
-		"description": "MaLiLib"
+		"description": "Resources for malilib",
+		"pack_format": 9
 	}
 }

@@ -9,17 +9,23 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import fi.dy.masa.malilib.MaLiLibConfigs;
 
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
+
 public class StringUtils
 {
     public static String getModVersionString(String modId)
     {
-        for (net.fabricmc.loader.api.ModContainer container : net.fabricmc.loader.api.FabricLoader.getInstance().getAllMods())
+        for (ModInfo info : FMLLoader.getLoadingModList().getMods()) {
+            if(info.getModId().equals(modId)) return info.getVersion().getQualifier();
+        }
+        /*for (net.fabricmc.loader.api.ModContainer container : net.fabricmc.loader.api.FabricLoader.getInstance().getAllMods())
         {
             if (container.getMetadata().getId().equals(modId))
             {
                 return container.getMetadata().getVersion().getFriendlyString();
             }
-        }
+        }*/
 
         return "?";
     }

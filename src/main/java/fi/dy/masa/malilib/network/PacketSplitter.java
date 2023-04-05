@@ -15,8 +15,10 @@ import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.util.Identifier;
 import fi.dy.masa.malilib.util.PacketUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+//import net.fabricmc.api.EnvType;
+//import net.fabricmc.api.Environment;
 
 /**
  * Network packet splitter code from QuickCarpet by skyrising
@@ -39,7 +41,8 @@ public class PacketSplitter
         send(packet, MAX_PAYLOAD_PER_PACKET_S2C, buf -> networkHandler.sendPacket(new CustomPayloadS2CPacket(channel, buf)));
     }
 
-    @Environment(EnvType.CLIENT)
+//    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public static void send(ClientPlayNetworkHandler networkHandler, Identifier channel, PacketByteBuf packet)
     {
         send(packet, MAX_PAYLOAD_PER_PACKET_C2S, buf -> networkHandler.sendPacket(new CustomPayloadC2SPacket(channel, buf)));
